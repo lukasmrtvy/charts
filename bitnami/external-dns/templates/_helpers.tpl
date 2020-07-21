@@ -370,18 +370,6 @@ external-dns: azure.resourceGroup
 
 {{/*
 Validate values of Azure DNS:
-- must provide the Azure Tenant ID when provider is "azure" and secretName is not set
-*/}}
-{{- define "external-dns.validateValues.azure.tenantId" -}}
-{{- if and (eq .Values.provider "azure") (not .Values.azure.tenantId) (not .Values.azure.secretName) -}}
-external-dns: azure.tenantId
-    You must provide the Azure Tenant ID when provider="azure".
-    Please set the tenantId parameter (--set azure.tenantId="xxxx")
-{{- end -}}
-{{- end -}}
-
-{{/*
-Validate values of Azure DNS:
 - must provide the Azure Subscription ID when provider is "azure" and secretName is not set
 */}}
 {{- define "external-dns.validateValues.azure.subscriptionId" -}}
