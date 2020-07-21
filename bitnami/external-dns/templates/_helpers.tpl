@@ -446,7 +446,7 @@ external-dns: azure.useManagedIdentityExtension
 Validate values of Azure Private DNS:
 - must provide the Azure Resource Group when provider is "azure-private-dns"
 */}}
-{{- define "external-dns.validateValues.azure.resourceGroup" -}}
+{{- define "external-dns.validateValues.azurePrivateDns.resourceGroup" -}}
 {{- if and (eq .Values.provider "azure-private-dns") (not .Values.azure.resourceGroup) (not .Values.azure.secretName) -}}
 external-dns: azure.resourceGroup
     You must provide the Azure Resource Group when provider="azure".
