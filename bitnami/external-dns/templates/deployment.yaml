@@ -237,6 +237,7 @@ spec:
             - name: AZURE_TENANT_ID
               value: {{ .Values.azure.tenantId }}
             {{- end }}
+            {{- if not .Values.azure.useManagedIdentityExtension }}
             {{- if or .Values.azure.aadClientId .Values.azure.aadClientSecret .Values.azure.secretName }}
             - name: AZURE_CLIENT_SECRET
               valueFrom:
@@ -248,6 +249,7 @@ spec:
                 secretKeyRef:
                   name: {{ template "external-dns.secretName" . }}
                   key: azure_aad_client_id
+            {{- end }}
             {{- end }}
             {{- end }}
             {{- if eq .Values.provider "cloudflare" }}
